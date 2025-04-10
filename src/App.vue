@@ -36,7 +36,7 @@
         <div>
           <div class="flex justify-between items-center">
             <div class="xl:grid flex-col grid-cols-1 gap-y-10 w-[45%]">
-              <p class="w-[80%] text-[#450000] font-semibold 2xl:text-[30px] xl:text-[22px] lg:text-[20] md:text-[15] text-[12px]">
+              <p class="w-[80%] text-[#450000] font-semibold xl:text-[22px] lg:text-[20] md:text-[15] text-[12px]">
                 Это не просто превосходный десерт, но и достойное угощение которое можно использовать в качестве подарка
               </p>
               <button class="mt-5 mb-10 2xl:text-[25px] md:text-[15] text-[12px] 2xl:py-5 py-2 xl:py-3 px-4 bg-[#FF637C] rounded-[40px] w-[70%] text-white">Перейти в каталог</button>
