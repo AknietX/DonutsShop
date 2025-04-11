@@ -1,59 +1,46 @@
-<script setup></script>
+<script setup>
+import MainHeader from './components/MainHeader.vue';
+</script>
 
 
 
 
 
 <template>
-  <div class="w-full h-full bg-[#FFDAE8] pb-50">
-    <header class="p-3 w-full h-full">
-      <div class="xl:px-96 lg:px-40 md:px-20 sm:px-10 p-0]">
+  <MainHeader />
+  <div class="w-full h-full bg-white">
+    <h2 class="text-[#FF637C] xl:text-[50px] lg:text-[40px] md:text-[34px] sm:text-[28px] text-[28px] font-[900] ml-[2%] sm:ml-[5%] md:ml-[5%] lg:ml-[5%] xl:ml-[10%] mt-5 sm:mt-10 xl:mt-20  ">Особенности</h2>
+    <div class="w-[100%] xl:px-90 lg:px-40 md:px-20 sm:px-10 p-10 py-5 sm:py-10 xl:py-12">
 
-        <div class="flex justify-between items-center w-full">
-          <img class="xl:h-10 xl:w-10 h-7 w-7 " src="../src/assets/images/logo.png" alt="">
 
-          <nav class="flex w-[70%]">
-            <ul class="flex w-[100%] justify-between xl:text-[21px] lg:text-[16px] md:text-[12px] text-[10px]">
-              <li class="text-[#960101] font-bold">Главная</li>
-              <li class="text-[#960101] font-bold">История</li>
-              <li class="text-[#960101] font-bold">О нас </li>
-              <li class="text-[#960101] font-bold">Каталог продукции</li>
-              <li class="text-[#960101] font-bold">Доставка и оплата</li>
-            </ul>
-          </nav>
-
-          <div class="flex justify-center items-center">
-            <span class="text-[#960101] xl:text-[21px] lg:text-[18px] md:text-[14px] text-[10px]">+999 999-22-22</span>
-            <img class="xl:h-9 xl:w-9 h-5 w-5  ml-3" src="../src/assets/images/drawer.png" alt="">
-            <span class="text-[#960101] xl:text-[20px] lg:text-[15px] text-[10px] ml-1">0</span>
-          </div>
+      <div class="flex justify-between items-center">
+        <div class="w-[40%]">
+          <h3 class="text-[#450000] text-[14px] sm:text-[20px] md:text-[22px] md:text-[25px] xl:text-[30px] font-[900]">Стильные. Красивые. Оригинальные</h3>
+          <p class="text-[12px] sm:text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-[400]">Именно так говорят наши гости когда видят наши пончики</p>
         </div>
-
-        <div class="relative w-4/5 flex flex-col items-center pb-0">
-          <span id="Below_header" class="xl:text-[118px] lg:text-[90px] md:text-[50px] sm:text-[40px] text-[30px] absolute text-[#501800] mr-10 mt-3">Koreana</span>
-          <h1 class="mb-0 xl:text-[200px] lg:text-[150px] md:text-[110px] sm:text-[80px] text-[70px] font-black text-[#FF637C] mx-auto">Donuts</h1>
-        </div>
-        <div>
-          <div class="flex justify-between items-center">
-            <div class="xl:grid flex-col grid-cols-1 gap-y-10 w-[45%]">
-              <p class="w-[80%] text-[#450000] font-semibold xl:text-[22px] lg:text-[20] md:text-[15] text-[12px]">
-                Это не просто превосходный десерт, но и достойное угощение которое можно использовать в качестве подарка
-              </p>
-              <button class="mt-5 mb-10 2xl:text-[25px] md:text-[15] text-[12px] 2xl:py-5 py-2 xl:py-3 px-4 bg-[#FF637C] rounded-[40px] w-[70%] text-white">Перейти в каталог</button>
-              <div class="flex justify-between w-[100%]">
-                <div class="flex items-center text-[#450000]"><img class="w-[30%]" src="../src/assets/images/Vector.png" alt="Натуральные ингредиенты"> <p class="xl:text-[18px] xl:ml-3 ml-1 lg:text-[20] md:text-[15] text-[10px]">Из натуральных ингридиентов</p></div>
-                <div class="flex items-center text-[#450000]"><img class="w-[30%]" src="../src/assets/images/home.png" alt="дом"> <p class="xl:ml-3 xl:text-[18px] lg:text-[20] md:text-[15] text-[10px]">Доставим до самого дома</p></div>
-              </div>
-            </div>
-            <img class="w-[60%] h-[60%]" src="../src/assets/images/ponchiki.png" alt="">
-          </div>
-
-        </div>
-
+        <img class="w-[54%]" src="../src/assets/images/Rectangle-3.png" alt="">
       </div>
-    </header>
-  </div>
 
+      <div class="flex justify-between items-center mt-10">
+        <img class="w-[54%]" src="../src/assets/images/Rectangle-4.png" alt="">
+        <div class="w-[40%]">
+          <h3 class="text-[#450000] text-[14px] sm:text-[20px] md:text-[22px] md:text-[25px] xl:text-[30px] font-[900]">Большой ассортимент</h3>
+          <p class="text-[12px] sm:text-[15px] md:text-[16px]  lg:text-[18px] xl:text-[20px] font-[400]">12 видов щедрой начинки на выбор, яркая глазурь и умопомрочительны на вкус</p>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mt-10">
+        <div class="w-[40%]">
+          <h3 class="text-[#450000] text-[14px] sm:text-[20px] md:text-[22px] md:text-[25px] xl:text-[30px] font-[900]">Быстрая доставка</h3>
+          <p class="text-[12px] sm:text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-[400]">Наш курьер всегда готов привезти вам вкусных пончиков домой или в офис</p>
+        </div>
+        <img class="w-[54%]" src="../src/assets/images/Rectangle-5.png" alt="">
+      </div>
+
+
+    </div>
+
+  </div>
 </template>
 
 
@@ -61,13 +48,10 @@
 body{
   background-color: white;
 }
-h1 {
-    font-family: 'nunito', sans-serif;
-  }
-#Below_header{
-  font-family: 'Satisfy', 'cursive';
+h2{
+  font-family: 'roboto', 'sans-serif';
 }
-p{
-  font-family: 'nunito', sans-serif;
+h3, p{
+  font-family: 'nunito', 'sans-serif';
 }
 </style>
