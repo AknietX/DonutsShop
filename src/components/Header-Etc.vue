@@ -3,7 +3,7 @@
 </script>
 <template>
   <div class="w-full h-full bg-white relative">
-    <img class="absolute top-[30%] right-0 w-[8%]" src="../assets/images/donut-brownchoc 1.png" alt="">
+    <img class="absolute top-[30%] right-0 w-[8%]" src="../assets/images/donut-brown.png" alt="">
     <img class="absolute bottom-[25%] lg:bottom-[30%] w-[11%]" src="../assets/images/etc-donut.png" alt="">
 
     <h2 class="text-[#FF637C] xl:text-[60px] lg:text-[40px] md:text-[34px] sm:text-[28px] text-[28px] font-[900] ml-[2%] sm:ml-[5%] md:ml-[5%] lg:ml-[5%] xl:ml-[10%] mt-5 sm:mt-10  ">Особенности</h2>

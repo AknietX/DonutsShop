@@ -1,12 +1,12 @@
 <script setup></script>
 
 <template>
-  <div class="w-full h-full bg-[#FFDAE8] pb-10 xl:pb-20 relative">
+  <div class="w-full h-full bg-[#FFDAE8] pb-10 xl:pb-5 relative">
     <img class="absolute top-[10%] left-[1%] md:top-[18%] sm:top-[40%] lg:top-[25%] xl:top-[25%] xl:left-[5%] w-[20%] sm:w-[11%]" src="../assets/images/left_donut.png" alt="">
   <header class="px-3 w-full h-full">
-    <div class="xl:px-96 lg:px-40 md:px-20 sm:px-10 p-0">
+    <div class="xl:px-80 lg:px-40 md:px-20 sm:px-10 p-0">
 
-      <div class="left-0 top-0 fixed z-50 bg-[#FFDAE8] w-full xl:px-96 lg:px-40 md:px-20 sm:px-10 px-3">
+      <div class="hidden md:block  left-0 top-0 fixed z-50 bg-[#FFDAE8] w-full xl:px-[400px] lg:px-40 md:px-20 sm:px-10 px-3">
 
         <div class=" flex justify-between items-center w-[100%] py-3 px-3 rounded-3xl">
 
@@ -29,13 +29,13 @@
         </div>
       </div>
 
-      <div class="relative w-4/5 flex flex-col items-center mt-9 pb-0 mx-auto md:mx-0 ">
+      <div class="relative w-4/5 flex flex-col items-center mt-0 md:mt-9 pb-0 mx-auto md:mx-0 ">
         <span id="Below_header" class="xl:text-[118px] lg:text-[90px] md:text-[50px] sm:text-[40px] text-[30px] absolute text-[#501800] mr-10 mt-3">Koreana</span>
         <h1 class="mb-0 xl:text-[200px] lg:text-[150px] md:text-[110px] sm:text-[80px] text-[70px] font-black text-[#FF637C] mx-auto">Donuts</h1>
       </div>
       <div>
         <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center">
-          <div class="xl:grid flex-col grid-cols-1 gap-y-10 w-[45%] mx-auto xl:text-left lg:text-left md:text-left text-center">
+          <div class="xl:grid flex-col grid-cols-1 gap-y-10 w-[60%] min-[508px]:w-[45%] mx-auto xl:text-left lg:text-left md:text-left text-center">
             <p class="w-[100%] md:w-[80%] text-[#450000] font-semibold xl:text-[22px] lg:text-[20px] md:text-[15px] text-[12px]">
               Это не просто превосходный десерт, но и достойное угощение которое можно использовать в качестве подарка
             </p>
@@ -45,7 +45,7 @@
               <div class="flex items-center text-[#450000]"><img class="w-[30%] " src="../assets/images/home.png" alt="дом"> <p class="ml-0 xl:ml-3 xl:text-[18px] lg:text-[16px] md:text-[13px] text-[10px]">Доставим до самого дома</p></div>
             </div>
           </div>
-          <img class="xl:hidden w-[60%] h-auto mx-auto" src="../assets/images/ponchiki.png" alt="Пончики">
+          <img class="xl:hidden w-[70%] min-[482px]:w-[60%] h-auto mx-auto" src="../assets/images/ponchiki.png" alt="Пончики">
           <!-- Картинка пончиков на больших экранах -->
           <img class="hidden xl:block w-[60%] h-[60%]" src="../assets/images/ponchiki.png" alt="Пончики">
         </div>
