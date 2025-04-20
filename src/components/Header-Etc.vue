@@ -12,7 +12,7 @@
 
       <div class="flex justify-between items-center">
         <div class="w-[40%]">
-          <h3 class="text-[#450000] max-[472px]:text-[12px] text-[14px] sm:text-[20px] md:text-[22px] md:text-[25px] xl:text-[30px] font-[900]">Стильные. Красивые. Оригинальные</h3>
+          <h3 class="text-[#450000] max-[472px]:text-[12px] text-[14px] sm:text-[20px] md:text-[22px] md:text-[23px] xl:text-[30px] font-[900]">Стильные. Красивые. Оригинальные</h3>
           <p class="max-[472px]:text-[10px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-[400]">Именно так говорят наши гости когда видят наши пончики</p>
         </div>
         <img class="w-[54%]" src="../assets/images/Rectangle-3.png" alt="">
@@ -21,14 +21,14 @@
       <div class="flex justify-between items-center mt-10">
         <img class="w-[54%]" src="../assets/images/Rectangle-4.png" alt="">
         <div class="w-[40%]">
-          <h3 class="text-[#450000] max-[472px]:text-[12px] text-[14px] sm:text-[20px] md:text-[22px] md:text-[25px] xl:text-[30px] font-[900]">Большой ассортимент</h3>
+          <h3 class="text-[#450000] max-[472px]:text-[12px] text-[14px] sm:text-[20px] md:text-[22px] md:text-[23px] xl:text-[30px] font-[900]">Большой ассортимент</h3>
           <p class="max-[472px]:text-[10px] text-[12px] sm:text-[15px] md:text-[16px]  lg:text-[18px] xl:text-[20px] font-[400]">12 видов щедрой начинки на выбор, яркая глазурь и умопомрочительны на вкус</p>
         </div>
       </div>
 
       <div class="flex justify-between items-center mt-10">
         <div class="w-[40%]">
-          <h3 class="text-[#450000] max-[472px]:text-[12px] text-[14px] sm:text-[20px] md:text-[22px] md:text-[25px] xl:text-[30px] font-[900]">Быстрая доставка</h3>
+          <h3 class="text-[#450000] max-[472px]:text-[12px] text-[14px] sm:text-[20px] md:text-[22px] md:text-[23px] xl:text-[30px] font-[900]">Быстрая доставка</h3>
           <p class="max-[472px]:text-[10px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-[400]">Наш курьер всегда готов привезти вам вкусных пончиков домой или в офис</p>
         </div>
         <img class="w-[54%]" src="../assets/images/Rectangle-5.png" alt="">
@@ -39,7 +39,7 @@
 
   </div>
 </template>
-<style>
+<style scoped>
 h2{
   font-family: 'roboto', 'sans-serif';
 }
