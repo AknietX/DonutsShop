@@ -1,4 +1,12 @@
-<script setup></script>
+
+
+<script setup>
+import router from '@/router';
+function goToAdmin() {
+  router.push('/admin')
+}
+
+</script>
 
 <template>
   <div class="bg-[url('../assets/images/rec.jpg')] bg-no-repeat bg-bottom bg-cover w-full h-full xl:pb-30 pb-10  relative">
@@ -39,7 +47,7 @@
             <p id="desc" class="w-[100%] max-[500px]:w-[80%] mx-0 max-[640px]:mx-auto md:w-[84%] font-[600] xl:text-[20px] lg:text-[16px] md:text-[13px] sm:text-[11px] min-[410px]:text-[12px] text-[11px]" style="color: rgba(69, 0, 0, 1);">
               Это не просто превосходный десерт, но и достойное угощение которое можно использовать в качестве подарка
             </p>
-            <button class="font-unbounded transition active:bg-[#7a0101] hover:bg-[#960101] mt-5 mb-10 2xl:text-[25px] md:text-[15px] text-[12px] 2xl:py-5 py-3 xl:py-3 px-4 bg-[#FF637C] rounded-[40px] max-[426px]:w-[70%] font-bold w-[68%] text-white">Перейти в каталог</button>
+            <button @click="goToAdmin" class="font-unbounded transition active:bg-[#7a0101] hover:bg-[#960101] mt-5 mb-10 2xl:text-[25px] md:text-[15px] text-[12px] 2xl:py-5 py-3 xl:py-3 px-4 bg-[#FF637C] rounded-[40px] max-[426px]:w-[70%] font-bold w-[68%] text-white">Перейти в каталог</button>
             <div class="flex hidden sm:flex justify-between w-[100%]">
               <div class="flex items-center" style="color: rgba(69, 0, 0, 1);"><img class="w-[30%] " src="../assets/images/Vector.png" alt="Натуральные ингредиенты"> <p class="ml-0 xl:text-[18px] xl:ml-3 lg:text-[14px] md:text-[13px] text-[10px]">Из натуральных ингридиентов</p></div>
               <div class="flex items-center" style="color: rgba(69, 0, 0, 1);"><img class="w-[30%] " src="../assets/images/home.png" alt="дом"> <p class="ml-0 xl:ml-3 xl:text-[18px] lg:text-[16px] md:text-[13px] text-[10px]">Доставим до самого дома</p></div>
