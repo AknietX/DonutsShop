@@ -3,7 +3,7 @@
 <script setup>
 import router from '@/router';
 function goToAdmin() {
-  router.push('/admin')
+  router.push('/login')
 }
 
 </script>
