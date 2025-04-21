@@ -41,9 +41,9 @@
 </template>
 <style scoped>
 h2{
-  font-family: 'roboto', 'sans-serif';
+  font-family: 'Unbounded', 'sans-serif';
 }
-h3, p{
-  font-family: 'nunito', 'sans-serif';
+h3{
+  font-family: 'Unbounded', 'sans-serif';
 }
 </style>

@@ -36,7 +36,7 @@
       <div>
         <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center">
           <div class="xl:grid flex-col min-[480px]:w-[60%] min-[510px]:w-[60%] grid-cols-1 gap-y-10 w-[80%] min-[508px]:w-[45%] mx-auto xl:text-left lg:text-left md:text-left text-center">
-            <p class="w-[100%] max-[500px]:w-[80%] mx-auto md:w-[84%] font-[600] xl:text-[20px] lg:text-[16px] md:text-[13px] sm:text-[11px] min-[410px]:text-[12px] text-[11px]" style="color: rgba(69, 0, 0, 1); font-family: Unbounded, 'sans-serif';">
+            <p id="desc" class="w-[100%] max-[500px]:w-[80%] mx-0 max-[640px]:mx-auto md:w-[84%] font-[600] xl:text-[20px] lg:text-[16px] md:text-[13px] sm:text-[11px] min-[410px]:text-[12px] text-[11px]" style="color: rgba(69, 0, 0, 1);">
               Это не просто превосходный десерт, но и достойное угощение которое можно использовать в качестве подарка
             </p>
             <button class="font-unbounded transition active:bg-[#7a0101] hover:bg-[#960101] mt-5 mb-10 2xl:text-[25px] md:text-[15px] text-[12px] 2xl:py-5 py-3 xl:py-3 px-4 bg-[#FF637C] rounded-[40px] max-[426px]:w-[70%] font-bold w-[68%] text-white">Перейти в каталог</button>
@@ -84,6 +84,9 @@ h1 {
   font-family: 'Square721', 'sans-serif';
   font-weight: 400;
 
+}
+#desc{
+    font-family: 'Unbounded', 'sans-serif';
 }
 </style>
 
