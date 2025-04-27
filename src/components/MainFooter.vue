@@ -63,9 +63,9 @@
         <p>amirakniet@gmail.com</p>
         <p>+996 555 555 555</p>
         <div class="flex justify-between">
-          <img class="block w-[20%]" src="../assets/images/whatsapp.png" alt="WhatsApp" />
-          <img class="block w-[20%]" src="../assets/images/inst.png" alt="Instagram" />
-          <img class="block w-[20%]" src="../assets/images/telegram.png" alt="Telegram" />
+          <img class="block w-[20%]" src="../assets/images/footer/whatsapp.png" alt="WhatsApp" />
+          <img class="block w-[20%]" src="../assets/images/footer/inst.png" alt="Instagram" />
+          <img class="block w-[20%]" src="../assets/images/footer/telegram.png" alt="Telegram" />
         </div>
       </div>
     </div>
