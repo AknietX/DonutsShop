@@ -27,7 +27,7 @@ function goToAdmins(){
             <ul class="flex w-[100%] justify-between xl:text-[20px] lg:text-[16px] md:text-[14px] sm:text-[13px] text-[10px]">
               <li class="text-[#960101] font-bold">Главная</li>
               <li class="text-[#960101] font-bold">О нас </li>
-              <li @click="goToAdmins" class="text-[#960101] font-bold">Каталог</li>
+              <li class="text-[#960101] font-bold">Каталог</li>
               <li class="text-[#960101] font-bold">Доставка и оплата</li>
             </ul>
           </nav>
@@ -35,7 +35,7 @@ function goToAdmins(){
           <div class="flex justify-center items-center">
             <div class="hidden sm:flex justify-center">
               <img class="xl:h-9 xl:w-9 lg:w-7 lg:h-7 h-5 w-5  ml-3" src="#" alt="">
-              <span class="text-[#960101] mt-1 xl:text-[20px] lg:text-[16px] text-[10px] ml-1">0</span>
+              <span @click="goToAdmins" class="text-[#960101] mt-1 xl:text-[20px] lg:text-[16px] text-[10px] ml-1">0</span>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ function goToAdmins(){
       <div class="fixed sm:hidden bottom-5 right-5 bg">
         <div class="flex justify-center">
           <img class="h-10 w-10  ml-3" src="#" alt="">
-          <span class="text-[#960101] mt-1 text-[24px] ml-1">0</span>
+          <span class="cursor-pointer text-[#960101] mt-1 text-[24px] ml-1">0</span>
         </div>
       </div>
 
