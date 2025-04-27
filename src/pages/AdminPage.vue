@@ -10,132 +10,110 @@ const title = ref('')
 const description = ref('')
 const price = ref('')
 const imageFile = ref(null)
+const imagePreviewUrl = ref('') // Добавляем отдельную ref для превью
 
-
-
+// Удаление товара
 const deleteProduct = async (product) => {
-  console.log('Удаляем продукт:', product); // Добавляем
-  if (!product || !product.id) {
-    alert('Данные продукта некорректные');
-    return;
-  }
-
-  if (!product || !product.id) {
-    alert('Данные продукта некорректные');
-    return;
-  }
-
-  // Если есть картинка — удаляем из storage
-  if (product.image_url) {
-    const filePath = product.image_url.split('/').slice(-2).join('/');
-
-    const { error: storageError } = await supabase
-      .storage
-      .from('product-images')
-      .remove([filePath]);
-
-    if (storageError) {
-      console.error('Ошибка при удалении файла:', storageError);
-      alert('Не удалось удалить файл');
-      return;
-    }
-  }
-
-  // Удаляем запись из таблицы
-  const { error: dbError } = await supabase
-    .from('donuts')
-    .delete()
-    .eq('id', product.id);
-
-  if (dbError) {
-    console.error('Ошибка при удалении товара:', dbError);
-    alert('Не удалось удалить товар');
-  } else {
-    alert('Товар успешно удалён!');
-    await fetchProducts();
-  }
-};
-onMounted(async () => {
-  const { data: authData } = await supabase.auth.getUser()
-  user.value = authData.user
-
-  if (user.value) {
-    await fetchProducts()
-  }
-
-  loading.value = false
-})
-
-const fetchProducts = async () => {
-  const { data, error } = await supabase.from('donuts').select('*').order('created_at', { ascending: false })
-  if (!error) {
-    products.value = data
-  } else {
-    console.error('Ошибка при загрузке товаров:', error)
-  }
-}
-
-const handleFileChange = (e) => {
-  const file = e.target.files[0]
-  if (file) imageFile.value = file
-}
-
-const addProduct = async () => {
-  if (!title.value || !price.value) {
-    alert('Заполни хотя бы название и цену')
+  if (!product?.id) {
+    alert('Ошибка: некорректные данные товара')
     return
   }
 
-  let imageUrl = null
-
-  if (imageFile.value) {
-    const file = imageFile.value
-    const fileExt = file.name.split('.').pop()
-    const fileName = `${Date.now()}.${fileExt}`
-    const filePath = `products/${fileName}`
-
-    console.log('Uploading file:', filePath)
-
-    const { error: uploadError } = await supabase.storage
-      .from('product-images')
-      .upload(filePath, file, {
-        upsert: false,  // Чтобы не перезаписывать файл, если он уже существует
-        metadata: { owner_id: user.value.id }  // Правильная синтаксическая структура
-      })
-
-    if (uploadError) {
-      console.error('Ошибка при загрузке фото:', uploadError)
-      alert('Не удалось загрузить фото')
-      return
+  try {
+    if (product.image_url) {
+      const filePath = product.image_url.split('/').slice(-2).join('/')
+      await supabase.storage.from('product-images').remove([filePath])
     }
 
-    const { data: publicUrlData } = await supabase
-      .storage
-      .from('product-images')
-      .getPublicUrl(filePath)
+    await supabase.from('donuts').delete().eq('id', product.id)
+    await fetchProducts()
+    alert('Товар удалён!')
+  } catch (error) {
+    console.error('Ошибка при удалении:', error)
+    alert('Не удалось удалить товар')
+  }
+}
 
-    imageUrl = publicUrlData.publicUrl
+// Загрузка товаров
+const fetchProducts = async () => {
+  try {
+    const { data } = await supabase
+      .from('donuts')
+      .select('*')
+      .order('created_at', { ascending: false })
+    products.value = data
+  } catch (error) {
+    console.error('Ошибка загрузки товаров:', error)
+  }
+}
+
+// Обработчик выбора файла
+const handleFileChange = (e) => {
+  const file = e.target.files[0]
+  if (file) {
+    imageFile.value = file
+    imagePreviewUrl.value = URL.createObjectURL(file) // Создаем URL сразу
+  }
+}
+
+// Добавление товара
+const addProduct = async () => {
+  if (!title.value || !price.value) {
+    alert('Укажите название и цену')
+    return
   }
 
-  const { error } = await supabase.from('donuts').insert([{
-    title: title.value,
-    description: description.value,
-    price: +price.value,
-    user_id: user.value.id,
-    image_url: imageUrl,
-  }])
+  try {
+    let imageUrl = null
 
-  if (error) {
-    console.error('Ошибка при добавлении товара:', error)
-    alert('Не удалось добавить товар')
-  } else {
+    if (imageFile.value) {
+      const fileExt = imageFile.value.name.split('.').pop()
+      const fileName = `${Date.now()}.${fileExt}`
+      const filePath = `products/${fileName}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('product-images')
+        .upload(filePath, imageFile.value)
+
+      if (uploadError) throw uploadError
+
+      const { data: publicUrlData } = await supabase
+        .storage
+        .from('product-images')
+        .getPublicUrl(filePath)
+
+      imageUrl = publicUrlData.publicUrl
+    }
+
+    await supabase.from('donuts').insert([{
+      title: title.value,
+      description: description.value,
+      price: +price.value,
+      user_id: user.value.id,
+      image_url: imageUrl,
+    }])
+
+    // Очистка формы
     title.value = ''
     description.value = ''
     price.value = ''
     imageFile.value = null
+    imagePreviewUrl.value = ''
     await fetchProducts()
+
+  } catch (error) {
+    console.error('Ошибка:', error)
+    alert('Не удалось добавить товар')
   }
 }
+
+// Загрузка данных
+onMounted(async () => {
+  const { data: authData } = await supabase.auth.getUser()
+  user.value = authData.user
+  if (user.value) await fetchProducts()
+  loading.value = false
+})
 </script>
 
 <template>
@@ -143,19 +121,19 @@ const addProduct = async () => {
     <h1 class="text-3xl font-bold mb-6 text-center">Панель управления товарами</h1>
 
     <div v-if="loading">Загрузка...</div>
-
     <div v-else>
-      <!-- Форма добавления товара -->
+      <!-- Форма добавления -->
       <form @submit.prevent="addProduct" class="mb-10 space-y-4 bg-gray-50 p-6 rounded-lg shadow">
         <input
           v-model="title"
           type="text"
-          placeholder="Название товара"
+          placeholder="Название"
           class="w-full p-2 border rounded"
+          required
         />
         <textarea
           v-model="description"
-          placeholder="Описание товара"
+          placeholder="Описание"
           class="w-full p-2 border rounded"
         ></textarea>
         <input
@@ -163,6 +141,7 @@ const addProduct = async () => {
           type="number"
           placeholder="Цена"
           class="w-full p-2 border rounded"
+          required
         />
         <input
           type="file"
@@ -173,11 +152,11 @@ const addProduct = async () => {
                  file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
         />
 
-        <div v-if="imageFile" class="mt-2">
+        <!-- Превью изображения -->
+        <div v-if="imagePreviewUrl" class="mt-2">
           <img
-            v-if="imageFile"
-            :src="imageFile ? URL.createObjectURL(imageFile) : ''"
-            alt="Превью фото"
+            :src="imagePreviewUrl"
+            alt="Превью"
             class="max-h-40 object-contain border rounded"
           />
         </div>
@@ -191,8 +170,7 @@ const addProduct = async () => {
       </form>
 
       <!-- Список товаров -->
-      <div v-if="products.length === 0" class="text-center text-gray-500">Товаров пока нет</div>
-
+      <div v-if="!products.length" class="text-center text-gray-500">Нет товаров</div>
       <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div
           v-for="product in products"
@@ -207,8 +185,13 @@ const addProduct = async () => {
           />
           <h2 class="text-xl font-semibold mb-1">{{ product.title }}</h2>
           <p class="text-gray-600 text-sm mb-2">{{ product.description }}</p>
-          <p class="text-lg font-bold">{{ product.price }}сом</p>
-          <button @click="deleteProduct(product)" class="text-red-500 hover:underline">Удалить</button>
+          <p class="text-lg font-bold">{{ product.price }} сом</p>
+          <button
+            @click="deleteProduct(product)"
+            class="text-red-500 hover:underline"
+          >
+            Удалить
+          </button>
         </div>
       </div>
     </div>
