@@ -64,7 +64,7 @@
         <p>+996 555 555 555</p>
         <div class="flex justify-between">
           <img class="block w-[20%]" src="../assets/images/footer/whatsapp.png" alt="WhatsApp" />
-          <img class="block w-[20%]" src="../assets/images/footer/inst.png" alt="Instagram" />
+          <img class="block w-[20%]" src="../assets/images/footer/instagram.png" alt="Instagram" />
           <img class="block w-[20%]" src="../assets/images/footer/telegram.png" alt="Telegram" />
         </div>
       </div>
