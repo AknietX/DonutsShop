@@ -5,19 +5,27 @@ import supabase from '../supabase'
 const donuts = ref([])
 const title = ref('')
 const price = ref(null)
+const user = ref(null)
 
 const fetchDonuts = async () => {
+
   const { data, error } = await supabase.from('donuts').select('*')
   if (!error) donuts.value = data
+
 }
 
-onMounted(fetchDonuts)
+onMounted(async ()=>{
+  const { data: authData } = await supabase.auth.getUser();
+  user.value = authData?.user; // Убедитесь, что authData есть и user существует.
+
+  fetchDonuts()
+})
 
 const addDonut = async () => {
   if (!title.value || !price.value) return
 
   const { error } = await supabase.from('donuts').insert([
-    { title: title.value, price: price.value }
+    { title: title.value, price: price.value, user_id: user.value.id }
   ])
 
   if (error) {
@@ -25,6 +33,7 @@ const addDonut = async () => {
   } else {
     title.value = ''
     price.value = null
+
     await fetchDonuts()
   }
 }

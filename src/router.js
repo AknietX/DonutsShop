@@ -2,11 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import  supabase  from './supabase'
 import AdminPage from './pages/AdminPage.vue'
 import LoginPage from './pages/LoginPage.vue'
+import App from './App.vue'
 // Импорт других компонентов
 import HomePage from './pages/Home.vue' // пример
 
 const routes = [
-  { path: '/', name: 'MainPage', component: HomePage },
+
   { path: '/login', name: 'Login', component: LoginPage },
   {
     path: '/admin',
@@ -14,6 +15,11 @@ const routes = [
     component: AdminPage,
     meta: { requiresAuth: true },
   },
+  {
+    path: '/',
+    name: 'Home',
+    component: HomePage,
+  }
 ]
 
 const router = createRouter({

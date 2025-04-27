@@ -11,6 +11,50 @@ const description = ref('')
 const price = ref('')
 const imageFile = ref(null)
 
+
+
+const deleteProduct = async (product) => {
+  console.log('Удаляем продукт:', product); // Добавляем
+  if (!product || !product.id) {
+    alert('Данные продукта некорректные');
+    return;
+  }
+
+  if (!product || !product.id) {
+    alert('Данные продукта некорректные');
+    return;
+  }
+
+  // Если есть картинка — удаляем из storage
+  if (product.image_url) {
+    const filePath = product.image_url.split('/').slice(-2).join('/');
+
+    const { error: storageError } = await supabase
+      .storage
+      .from('product-images')
+      .remove([filePath]);
+
+    if (storageError) {
+      console.error('Ошибка при удалении файла:', storageError);
+      alert('Не удалось удалить файл');
+      return;
+    }
+  }
+
+  // Удаляем запись из таблицы
+  const { error: dbError } = await supabase
+    .from('donuts')
+    .delete()
+    .eq('id', product.id);
+
+  if (dbError) {
+    console.error('Ошибка при удалении товара:', dbError);
+    alert('Не удалось удалить товар');
+  } else {
+    alert('Товар успешно удалён!');
+    await fetchProducts();
+  }
+};
 onMounted(async () => {
   const { data: authData } = await supabase.auth.getUser()
   user.value = authData.user
@@ -50,9 +94,14 @@ const addProduct = async () => {
     const fileName = `${Date.now()}.${fileExt}`
     const filePath = `products/${fileName}`
 
+    console.log('Uploading file:', filePath)
+
     const { error: uploadError } = await supabase.storage
       .from('product-images')
-      .upload(filePath, file)
+      .upload(filePath, file, {
+        upsert: false,  // Чтобы не перезаписывать файл, если он уже существует
+        metadata: { owner_id: user.value.id }  // Правильная синтаксическая структура
+      })
 
     if (uploadError) {
       console.error('Ошибка при загрузке фото:', uploadError)
@@ -60,7 +109,7 @@ const addProduct = async () => {
       return
     }
 
-    const { data: publicUrlData } = supabase
+    const { data: publicUrlData } = await supabase
       .storage
       .from('product-images')
       .getPublicUrl(filePath)
@@ -126,7 +175,8 @@ const addProduct = async () => {
 
         <div v-if="imageFile" class="mt-2">
           <img
-            :src="URL.createObjectURL(imageFile)"
+            v-if="imageFile"
+            :src="imageFile ? URL.createObjectURL(imageFile) : ''"
             alt="Превью фото"
             class="max-h-40 object-contain border rounded"
           />
@@ -157,15 +207,14 @@ const addProduct = async () => {
           />
           <h2 class="text-xl font-semibold mb-1">{{ product.title }}</h2>
           <p class="text-gray-600 text-sm mb-2">{{ product.description }}</p>
-          <p class="text-lg font-bold">{{ product.price }}₸</p>
+          <p class="text-lg font-bold">{{ product.price }}сом</p>
+          <button @click="deleteProduct(product)" class="text-red-500 hover:underline">Удалить</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-
-
 <style>
-
+/* Стиль можно добавить, если нужно */
 </style>

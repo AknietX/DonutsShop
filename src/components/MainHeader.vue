@@ -2,8 +2,12 @@
 
 <script setup>
 import router from '@/router';
+import func from '../../vue-temp/vue-editor-bridge';
 function goToAdmin() {
   router.push('/login')
+}
+function goToAdmins(){
+  router.push('/admin')
 }
 
 </script>
@@ -23,7 +27,7 @@ function goToAdmin() {
             <ul class="flex w-[100%] justify-between xl:text-[20px] lg:text-[16px] md:text-[14px] sm:text-[13px] text-[10px]">
               <li class="text-[#960101] font-bold">Главная</li>
               <li class="text-[#960101] font-bold">О нас </li>
-              <li class="text-[#960101] font-bold">Каталог</li>
+              <li @click="goToAdmins" class="text-[#960101] font-bold">Каталог</li>
               <li class="text-[#960101] font-bold">Доставка и оплата</li>
             </ul>
           </nav>
@@ -97,4 +101,3 @@ h1 {
     font-family: 'Unbounded', 'sans-serif';
 }
 </style>
-

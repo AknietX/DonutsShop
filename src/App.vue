@@ -25,5 +25,4 @@ body{
 p{
   font-family: 'nunito', 'sans-serif';
 }
-
 </style>
