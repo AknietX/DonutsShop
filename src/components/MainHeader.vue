@@ -2,7 +2,7 @@
 
 <script setup>
 import router from '@/router';
-import func from '../../vue-temp/vue-editor-bridge';
+
 function goToAdmin() {
   router.push('/login')
 }
@@ -14,7 +14,7 @@ function goToAdmins(){
 
 <template>
   <div class="bg-[url('../assets/images/rec.jpg')] bg-no-repeat bg-bottom bg-cover w-full h-full xl:pb-30 pb-10  relative">
-    <img class="absolute top-[10%] left-[1%] md:top-[18%] sm:top-[40%] lg:top-[25%] xl:top-[25%] z-30 xl:left-[5%] w-[15%] sm:w-[11%]" src="../assets/images/left_donut.png" alt="">
+    <img class="absolute top-[10%] left-[1%] md:top-[18%] sm:top-[40%] lg:top-[25%] xl:top-[25%] z-30 xl:left-[5%] w-[15%] sm:w-[11%]" src="#" alt="">
   <header class="px-3 w-full h-full">
     <div class="xl:px-80 lg:px-40 md:px-20 sm:px-10 p-0">
 
@@ -22,7 +22,7 @@ function goToAdmins(){
 
         <div id="easy-win" class=" flex justify-between relative items-center w-[100%] py-3 px-3 rounded-3xl">
 
-          <img class="" src="../assets/images/header-logo.png" alt="">
+          <img class="" src="#" alt="">
           <nav class="flex w-[70%]">
             <ul class="flex w-[100%] justify-between xl:text-[20px] lg:text-[16px] md:text-[14px] sm:text-[13px] text-[10px]">
               <li class="text-[#960101] font-bold">Главная</li>
@@ -34,7 +34,7 @@ function goToAdmins(){
 
           <div class="flex justify-center items-center">
             <div class="hidden sm:flex justify-center">
-              <img class="xl:h-9 xl:w-9 lg:w-7 lg:h-7 h-5 w-5  ml-3" src="../assets/images/drawer.png" alt="">
+              <img class="xl:h-9 xl:w-9 lg:w-7 lg:h-7 h-5 w-5  ml-3" src="#" alt="">
               <span class="text-[#960101] mt-1 xl:text-[20px] lg:text-[16px] text-[10px] ml-1">0</span>
             </div>
           </div>
@@ -53,21 +53,21 @@ function goToAdmins(){
             </p>
             <button @click="goToAdmin" class="font-unbounded transition active:bg-[#7a0101] hover:bg-[#960101] mt-5 mb-10 2xl:text-[25px] md:text-[15px] text-[12px] 2xl:py-5 py-3 xl:py-3 px-4 bg-[#FF637C] rounded-[40px] max-[426px]:w-[70%] font-bold w-[68%] text-white">Перейти в каталог</button>
             <div class="flex hidden sm:flex justify-between w-[100%]">
-              <div class="flex items-center" style="color: rgba(69, 0, 0, 1);"><img class="w-[30%] " src="../assets/images/Vector.png" alt="Натуральные ингредиенты"> <p class="ml-0 xl:text-[18px] xl:ml-3 lg:text-[14px] md:text-[13px] text-[10px]">Из натуральных ингридиентов</p></div>
-              <div class="flex items-center" style="color: rgba(69, 0, 0, 1);"><img class="w-[30%] " src="../assets/images/home.png" alt="дом"> <p class="ml-0 xl:ml-3 xl:text-[18px] lg:text-[16px] md:text-[13px] text-[10px]">Доставим до самого дома</p></div>
+              <div class="flex items-center" style="color: rgba(69, 0, 0, 1);"><img class="w-[30%] " src="#" alt="Натуральные ингредиенты"> <p class="ml-0 xl:text-[18px] xl:ml-3 lg:text-[14px] md:text-[13px] text-[10px]">Из натуральных ингридиентов</p></div>
+              <div class="flex items-center" style="color: rgba(69, 0, 0, 1);"><img class="w-[30%] " src="#" alt="дом"> <p class="ml-0 xl:ml-3 xl:text-[18px] lg:text-[16px] md:text-[13px] text-[10px]">Доставим до самого дома</p></div>
             </div>
           </div>
-          <img class="xl:hidden w-[70%] min-[482px]:w-[60%] h-auto mx-auto" src="../assets/images/ponchiki.png" alt="Пончики">
+          <img class="xl:hidden w-[70%] min-[482px]:w-[60%] h-auto mx-auto" src="#" alt="Пончики">
           <!-- Картинка пончиков на больших экранах -->
-          <img class="hidden xl:block w-[60%] h-[60%]" src="../assets/images/ponchiki.png" alt="Пончики">
+          <img class="hidden xl:block w-[60%] h-[60%]" src="#" alt="Пончики">
         </div>
         <div class="flex sm:hidden justify-between w-[60%] mt-5 mx-auto sm:px-10 text-[#450000]">
           <div class="flex items-center w-[48%]">
-            <img class="w-[20%]" src="../assets/images/Vector.png" alt="Натуральные ингредиенты">
+            <img class="w-[20%]" src="#" alt="Натуральные ингредиенты">
             <p class="text-[10px] ml-1">Из натуральных ингридиентов</p>
           </div>
           <div class="flex items-center w-[48%]">
-            <img class="w-[20%]" src="../assets/images/home.png" alt="дом">
+            <img class="w-[20%]" src="#" alt="дом">
             <p class="text-[10px] ml-1">Доставим до самого дома</p>
           </div>
         </div>
@@ -75,7 +75,7 @@ function goToAdmins(){
       </div>
       <div class="fixed sm:hidden bottom-5 right-5 bg">
         <div class="flex justify-center">
-          <img class="h-10 w-10  ml-3" src="../assets/images/drawer.png" alt="">
+          <img class="h-10 w-10  ml-3" src="#" alt="">
           <span class="text-[#960101] mt-1 text-[24px] ml-1">0</span>
         </div>
       </div>
