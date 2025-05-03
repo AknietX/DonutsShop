@@ -19,7 +19,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: HomePage,
-  }
+  },
 ]
 
 const router = createRouter({

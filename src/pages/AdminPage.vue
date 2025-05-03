@@ -10,7 +10,7 @@ const title = ref('')
 const description = ref('')
 const price = ref('')
 const imageFile = ref(null)
-const imagePreviewUrl = ref('') // Добавляем отдельную ref для превью
+const imagePreviewUrl = ref('')
 
 // Удаление товара
 const deleteProduct = async (product) => {
@@ -27,7 +27,6 @@ const deleteProduct = async (product) => {
 
     await supabase.from('donuts').delete().eq('id', product.id)
     await fetchProducts()
-    alert('Товар удалён!')
   } catch (error) {
     console.error('Ошибка при удалении:', error)
     alert('Не удалось удалить товар')
@@ -52,7 +51,7 @@ const handleFileChange = (e) => {
   const file = e.target.files[0]
   if (file) {
     imageFile.value = file
-    imagePreviewUrl.value = URL.createObjectURL(file) // Создаем URL сразу
+    imagePreviewUrl.value = URL.createObjectURL(file)
   }
 }
 
@@ -199,5 +198,5 @@ onMounted(async () => {
 </template>
 
 <style>
-/* Стиль можно добавить, если нужно */
+
 </style>

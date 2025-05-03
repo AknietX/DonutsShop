@@ -6,7 +6,6 @@ export default {
         freckle: ['Freckle Face', 'sans-serif'],
         satisfy: ['Satisfy', 'cursive'],
         roboto: ['Roboto', 'sans-serif'],
-        unbounded: ['Unbounded', 'sans-serif'],
         special: ['"Special Gothic Expanded One"', 'sans-serif'],
         square: ['Square721', 'sans-serif'],
         pacifico: ['Pacifico', 'cursive']
