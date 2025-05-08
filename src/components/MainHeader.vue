@@ -26,8 +26,8 @@ function goToCatalog() {
           <span id="Below_header" class="xl:text-[98px] lg:text-[90px] md:text-[70px] sm:text-[50px] text-[40px] absolute text-[#501800] top-0 left-[20%] min-[612px]:left-[28%] sm:left-18 md:left-25 xl:left-36 font-[400] mr-14 mt-0" style="color: rgba(215, 112, 112, 1);">
             koreana
           </span>
-          <h1 class="mb-0 xl:text-[150px] lg:text-[130px] md:text-[110px] sm:text-[80px] min-[426px]:text-[70px] text-[60px] font-[400] left-0 max-[640px]:mx-auto" style="color: rgba(113, 45, 45, 1);">
-            Donuts
+          <h1 class="mb-0 xl:text-[150px] lg:text-[130px] md:text-[110px] sm:text-[80px] min-[426px]:text-[50px] text-[40px] font-[400] left-0 max-[640px]:mx-auto" style="color: rgba(113, 45, 45, 1);">
+            Berliners
           </h1>
         </div>
 

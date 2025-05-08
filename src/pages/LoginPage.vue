@@ -1,4 +1,3 @@
-<!-- src/pages/LoginPage.vue -->
 <script setup>
 import { ref } from 'vue'
 import supabase from '@/supabase'
@@ -15,7 +14,7 @@ const login = async () => {
   })
 
   if (error) {
-    alert('Ошибка входа: ' + error.message)
+    alert('Ошибка входа: Неверный логин или пароль')
   } else {
     router.push('/admin')
   }

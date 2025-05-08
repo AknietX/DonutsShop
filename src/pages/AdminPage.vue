@@ -1,31 +1,35 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import supabase from '../supabase.js'
 
 const user = ref(null)
-const products = ref([])
+const allProducts = ref([])
 const loading = ref(true)
+const activeCategory = ref('products') // Текущая активная категория
 
-const title = ref('')
-const description = ref('')
-const price = ref('')
-const imageFile = ref(null)
-const imagePreviewUrl = ref('')
+// Форма
+const form = ref({
+  title: '',
+  description: '',
+  price: '',
+  imageFile: null,
+  imagePreviewUrl: ''
+})
 
 // Удаление товара
-const deleteProduct = async (product) => {
-  if (!product?.id) {
+const deleteProduct = async (donuts) => {
+  if (!donuts?.id) {
     alert('Ошибка: некорректные данные товара')
     return
   }
 
   try {
-    if (product.image_url) {
-      const filePath = product.image_url.split('/').slice(-2).join('/')
+    if (donuts.image_url) {
+      const filePath = donuts.image_url.split('/').slice(-2).join('/')
       await supabase.storage.from('product-images').remove([filePath])
     }
 
-    await supabase.from('donuts').delete().eq('id', product.id)
+    await supabase.from('donuts').delete().eq('id', donuts.id)
     await fetchProducts()
   } catch (error) {
     console.error('Ошибка при удалении:', error)
@@ -40,7 +44,8 @@ const fetchProducts = async () => {
       .from('donuts')
       .select('*')
       .order('created_at', { ascending: false })
-    products.value = data
+    allProducts.value = data
+    console.log(allProducts.value)
   } catch (error) {
     console.error('Ошибка загрузки товаров:', error)
   }
@@ -50,14 +55,14 @@ const fetchProducts = async () => {
 const handleFileChange = (e) => {
   const file = e.target.files[0]
   if (file) {
-    imageFile.value = file
-    imagePreviewUrl.value = URL.createObjectURL(file)
+    form.value.imageFile = file
+    form.value.imagePreviewUrl = URL.createObjectURL(file)
   }
 }
 
 // Добавление товара
 const addProduct = async () => {
-  if (!title.value || !price.value) {
+  if (!form.value.title || !form.value.price) {
     alert('Укажите название и цену')
     return
   }
@@ -65,14 +70,14 @@ const addProduct = async () => {
   try {
     let imageUrl = null
 
-    if (imageFile.value) {
-      const fileExt = imageFile.value.name.split('.').pop()
+    if (form.value.imageFile) {
+      const fileExt = form.value.imageFile.name.split('.').pop()
       const fileName = `${Date.now()}.${fileExt}`
-      const filePath = `products/${fileName}`
+      const filePath = `${activeCategory.value}/${fileName}`
 
       const { error: uploadError } = await supabase.storage
         .from('product-images')
-        .upload(filePath, imageFile.value)
+        .upload(filePath, form.value.imageFile)
 
       if (uploadError) throw uploadError
 
@@ -85,19 +90,22 @@ const addProduct = async () => {
     }
 
     await supabase.from('donuts').insert([{
-      title: title.value,
-      description: description.value,
-      price: +price.value,
+      title: form.value.title,
+      description: form.value.description,
+      price: +form.value.price,
       user_id: user.value.id,
       image_url: imageUrl,
+      category: activeCategory.value
     }])
 
     // Очистка формы
-    title.value = ''
-    description.value = ''
-    price.value = ''
-    imageFile.value = null
-    imagePreviewUrl.value = ''
+    form.value = {
+      title: '',
+      description: '',
+      price: '',
+      imageFile: null,
+      imagePreviewUrl: ''
+    }
     await fetchProducts()
 
   } catch (error) {
@@ -105,6 +113,11 @@ const addProduct = async () => {
     alert('Не удалось добавить товар')
   }
 }
+
+// Фильтрация продуктов по категории
+const filteredProducts = computed(() => {
+  return allProducts.value.filter(product => product.category === activeCategory.value)
+})
 
 // Загрузка данных
 onMounted(async () => {
@@ -121,22 +134,48 @@ onMounted(async () => {
 
     <div v-if="loading">Загрузка...</div>
     <div v-else>
+      <!-- Переключатель категорий -->
+      <div class="flex space-x-4 mb-6">
+        <button
+          @click="activeCategory = 'products'"
+          :class="{'bg-blue-600 text-white': activeCategory === 'products'}"
+          class="px-4 py-2 rounded border"
+        >
+          Пончики
+        </button>
+        <button
+          @click="activeCategory = 'drinks'"
+          :class="{'bg-blue-600 text-white': activeCategory === 'drinks'}"
+          class="px-4 py-2 rounded border"
+        >
+          Напитки
+        </button>
+        <button
+          @click="activeCategory = 'makarons'"
+          :class="{'bg-blue-600 text-white': activeCategory === 'makarons'}"
+          class="px-4 py-2 rounded border"
+        >
+          Макаронс
+        </button>
+      </div>
+
       <!-- Форма добавления -->
       <form @submit.prevent="addProduct" class="mb-10 space-y-4 bg-gray-50 p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold capitalize">{{ activeCategory }}</h2>
         <input
-          v-model="title"
+          v-model="form.title"
           type="text"
           placeholder="Название"
           class="w-full p-2 border rounded"
           required
         />
         <textarea
-          v-model="description"
+          v-model="form.description"
           placeholder="Описание"
           class="w-full p-2 border rounded"
         ></textarea>
         <input
-          v-model="price"
+          v-model="form.price"
           type="number"
           placeholder="Цена"
           class="w-full p-2 border rounded"
@@ -152,9 +191,9 @@ onMounted(async () => {
         />
 
         <!-- Превью изображения -->
-        <div v-if="imagePreviewUrl" class="mt-2">
+        <div v-if="form.imagePreviewUrl" class="mt-2">
           <img
-            :src="imagePreviewUrl"
+            :src="form.imagePreviewUrl"
             alt="Превью"
             class="max-h-40 object-contain border rounded"
           />
@@ -169,10 +208,10 @@ onMounted(async () => {
       </form>
 
       <!-- Список товаров -->
-      <div v-if="!products.length" class="text-center text-gray-500">Нет товаров</div>
+      <div v-if="!filteredProducts.length" class="text-center text-gray-500">Нет товаров в этой категории</div>
       <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div
-          v-for="product in products"
+          v-for="product in filteredProducts"
           :key="product.id"
           class="bg-white p-4 rounded shadow hover:shadow-md transition"
         >
@@ -196,7 +235,3 @@ onMounted(async () => {
     </div>
   </div>
 </template>
-
-<style>
-
-</style>
