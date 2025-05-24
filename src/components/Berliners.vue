@@ -65,28 +65,34 @@ onMounted(() => {
               <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow overflow-y-auto">{{ item.description }}</p>
               <div class="flex items-center justify-between mt-auto">
                 <span class="font-bold text-[14px] text-red-500">{{ item.price }} с</span>
-                <div class="flex items-center w-[60%]">
-                  <button
-                    v-if="cart.find(cartItem => cartItem.id === item.id)?.quantity > 0"
-                    @click.stop="decreaseQuantity(item.id)"
-                    class="bg-red-500 text-white w-8 h-8 flex items-center justify-center rounded-l-lg hover:bg-red-600 transition"
-                  >
-                    <span class="text-lg font-bold">−</span>
-                  </button>
-                  <button
-                    @click.stop="addToCart(item)"
-                    :class="{
-                      'bg-red-500 text-white h-8 px-4 py-1 hover:bg-red-600 transition': true,
-                      'rounded-l-none': cart.find(cartItem => cartItem.id === item.id)?.quantity > 0,
-                      'rounded-l-lg': !cart.find(cartItem => cartItem.id === item.id)?.quantity > 0,
-                      'px-6': cart.find(cartItem => cartItem.id === item.id)?.quantity > 1
-                    }"
-                  >
-                    {{ cart.find(cartItem => cartItem.id === item.id)?.quantity > 0
-                      ? `×${cart.find(cartItem => cartItem.id === item.id).quantity}`
-                      : `В корзину`
-                    }}
-                  </button>
+                <div class="flex items-center w-[60%] text-[5px]">
+                  <div class="flex items-center w-[100%]">
+                    <button
+                      v-if="cart.find(cartItem => cartItem.id === item.id)?.quantity > 0"
+                      @click.stop="decreaseQuantity(item.id)"
+                      class="bg-red-500 text-white w-8 h-8 flex items-center justify-center rounded-l-lg hover:bg-red-600 transition"
+                    >
+                      <span class="text-lg font-bold">−</span>
+                    </button>
+                    <button
+                      @click.stop="addToCart(item)"
+                      :class="{
+                        'bg-red-500 text-white h-8 hover:bg-red-600 transition flex items-center justify-center': true,
+                        'rounded-l-none': cart.find(cartItem => cartItem.id === item.id)?.quantity > 0,
+                        'rounded-l-lg': !cart.find(cartItem => cartItem.id === item.id)?.quantity > 0,
+                        'px-2 text-xs min-[400px]:text-sm': true,
+                        'w-[80px] min-[400px]:w-auto': true,
+                        'min-w-[80px]': true,
+                        'px-6': cart.find(cartItem => cartItem.id === item.id)?.quantity > 1
+                      }"
+                    >
+                      {{ cart.find(cartItem => cartItem.id === item.id)?.quantity > 0
+                        ? `×${cart.find(cartItem => cartItem.id === item.id).quantity}`
+                        : `В корзину`
+                      }}
+                    </button>
+                  </div>
+
                 </div>
               </div>
             </div>

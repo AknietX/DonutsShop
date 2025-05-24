@@ -1,12 +1,5 @@
 <script setup>
-import { useRouter } from 'vue-router';
 
-
-const router = useRouter();
-
-function goToCatalog() {
-  router.push('/login');
-}
 </script>
 
 <template>
@@ -34,7 +27,6 @@ function goToCatalog() {
             </p>
 
             <button
-              @click="goToCatalog"
               class="font-unbounded transition active:bg-[#7a0101] hover:bg-[#960101] mt-5 mb-10 2xl:text-[25px] md:text-[15px] text-[12px] 2xl:py-5 py-3 xl:py-3 px-4 bg-[#FF637C] rounded-[40px] max-[426px]:w-[70%] font-bold w-[68%] text-white"
             >
               Перейти в каталог

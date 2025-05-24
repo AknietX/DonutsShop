@@ -27,6 +27,30 @@ const props = defineProps({
 const totalPrice = computed(() => {
   return props.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 });
+
+const placeOrder = () => {
+  if (props.cart.length === 0) return;
+
+  // Формируем список товаров
+  const productsList = props.cart.map(item =>
+    `${item.title} (${item.quantity} шт.)`
+  ).join(', ');
+
+  // Формируем сообщение
+  const message = `Здравствуйте, хотели заказать: ${productsList}. Общая сумма: ${totalPrice.value} сом.`;
+
+  // Кодируем сообщение для URL
+  const encodedMessage = encodeURIComponent(message);
+
+  // Номер телефона (замените на нужный)
+  const phoneNumber = '996707444938'; // Пример номера для Кыргызстана
+
+  // Открываем WhatsApp с подготовленным сообщением
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+
+  // Очищаем корзину после отправки
+  props.clearCart();
+};
 </script>
 
 <template>
@@ -100,11 +124,12 @@ const totalPrice = computed(() => {
           <span class="text-xl font-bold">{{ totalPrice }} с</span>
         </div>
         <button
+          @click="placeOrder"
           class="w-full bg-red-500 text-white py-3 rounded-lg mt-4 hover:bg-red-600 transition"
           :class="{'opacity-50 cursor-not-allowed': cart.length === 0}"
           :disabled="cart.length === 0"
         >
-          Оформить заказ
+          Сделать заказ
         </button>
       </div>
     </div>

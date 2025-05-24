@@ -1,5 +1,12 @@
 <script setup>
+import { useRouter } from 'vue-router';
 
+
+const router = useRouter();
+
+function goToCatalog() {
+  router.push('/login');
+}
 
 </script>
 
@@ -17,6 +24,7 @@
       alt=""
     />
     <img
+      @click="goToCatalog"
       class="absolute bottom-0 left-0 w-[10%]"
       src="../assets/images/footer/font-ldonut.png"
       alt=""

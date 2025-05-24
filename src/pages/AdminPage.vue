@@ -164,11 +164,11 @@ onMounted(async () => {
           Berliner
         </button>
         <button
-          @click="activeTable = 'donuts'"
-          :class="{'bg-blue-600 text-white': activeTable === 'donuts'}"
+          @click="activeTable = 'Рекламный'"
+          :class="{'bg-blue-600 text-white': activeTable === 'Рекламный'}"
           class="px-4 py-2 rounded border"
         >
-          Donuts
+          Рекламный
         </button>
       </div>
 
@@ -193,7 +193,7 @@ onMounted(async () => {
           :class="{'bg-blue-600 text-white': activeCategory === 'makarons'}"
           class="px-4 py-2 rounded border"
         >
-          Макаронс
+          Выпечка
         </button>
       </div>
 

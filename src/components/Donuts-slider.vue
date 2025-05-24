@@ -109,6 +109,7 @@ onUnmounted(() => {
 .image-slider {
   position: relative;
   width: 100%;
+  
 }
 
 .slider-image {

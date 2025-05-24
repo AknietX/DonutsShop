@@ -20,7 +20,7 @@ const {  openDrawer } = inject('cart')
       <MakaronSlider />
     </div>
     <div class="w-full flex justify-center">
-      <button @click="openDrawer" class="w-[80%] p-4 bg-[#EB1437] rounded-xl text-white text-[18px] sm:text-[21px] md:text-[23px] lg:text-[26px] xl:text-[29px] hover:bg-[#A0000F] font-[600] mt-[5%]">Сделать заказ</button>
+      <button @click="openDrawer" class="w-[80%] p-4 bg-[#EB1437] rounded-xl text-white text-[18px] sm:text-[21px] md:text-[23px] lg:text-[26px] xl:text-[29px] hover:bg-[#A0000F] font-[600] mt-[7%] md:mt-[5%]">Сделать заказ</button>
     </div>
   </div>
 </template>
