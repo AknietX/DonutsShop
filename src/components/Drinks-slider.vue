@@ -7,11 +7,6 @@ const products = ref([]);
 const currentIndex = ref(0);
 let intervalId = null;
 
-const isImageFile = (fileName) => {
-  const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif'];
-  return imageExtensions.some(ext => fileName.toLowerCase().endsWith(ext));
-};
-
 const fetchProducts = async () => {
   try {
     const { data, error } = await supabase
@@ -93,16 +88,14 @@ onUnmounted(() => {
       <img
         :src="sliderImages[currentIndex]"
         :alt="products[currentIndex]?.title || 'Изображение продукта'"
-        class="slider-image"
+        class="slider-image shadow-lg"
         @error="nextImage()"
       />
-      <!-- <div class="flex justify-between px-3 h-[10%] w-full items-center rounded-b-lg absolute bottom-0 opacity-80" style="background: #FFFBFB">
-        <div class="w-[50%]">{{ products[currentIndex]?.title || 'Название продукта' }}</div>
-        <div class="w-[22%] h-[100%] flex justify-between items-center ">
-          <div>цена:</div>
-          <div>{{ products[currentIndex]?.price || '0' }}с</div>
+     <div class="relative px-3 h-[10%] w-full items-center rounded-b-lg ">
+        <div class="w-[18%] h-[100%]">
+          <div id='price' class="absolute right-3 text-[#960101] text-[15px] md:text-[18px] top-0 min-[380px]:top-2 md:top-3">{{ products[currentIndex]?.price || '0' }} сом</div>
         </div>
-      </div> -->
+      </div>
     </template>
     <div v-else class="placeholder">
       Изображения не найдены
@@ -114,7 +107,7 @@ onUnmounted(() => {
 /* Ваши существующие стили остаются без изменений */
 .image-slider {
   position: relative;
-  height: 39%;
+  height: 35%;
   width: 100%;
 }
 
@@ -125,5 +118,10 @@ onUnmounted(() => {
   transition: opacity 0.5s ease-in-out;
   border-radius: 18px 18px 18px 18px;
 }
+@media (min-width: 640px) {
+  #price{
+  font-family: 'Square721', sans-serif;
+}}
+
 </style>
 

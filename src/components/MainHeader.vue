@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import NavigationBar from '@/components/NavigationBar.vue';
+
 
 const router = useRouter();
 
@@ -11,22 +11,17 @@ function goToCatalog() {
 
 <template>
   <div class="bg-[url('../assets/images/header/header_bg.png')] z-10 bg-no-repeat bg-bottom bg-cover w-full h-full xl:pb-30 pb-10 relative">
-    <NavigationBar />
 
-    <img
-      class="absolute top-[20%] left-[1%] md:top-[18%] sm:top-[50%] lg:top-[25%] xl:top-[25%] xl:left-[5%] w-[15%] sm:w-[11%]"
-      src="../assets/images/header/left_donut.png"
-      alt="Decoration"
-    >
+
 
     <header class="py-3 w-full h-full">
       <div class="xl:px-80 lg:px-40 md:px-20 sm:px-10 p-0">
         <!-- Заголовок и подзаголовок -->
-        <div class="relative w-4/5 flex items-center mt-10 md:mt-10 pb-0 max-[640px]:mx-auto">
-          <span id="Below_header" class="xl:text-[98px] lg:text-[90px] md:text-[70px] sm:text-[50px] text-[40px] absolute text-[#501800] top-0 left-[20%] min-[612px]:left-[28%] sm:left-18 md:left-25 xl:left-36 font-[400] mr-14 mt-0" style="color: rgba(215, 112, 112, 1);">
+        <div class="relative w-4/5 flex items-center mt-5 md:mt-10 pb-0 max-[640px]:mx-auto">
+          <span id="Below_header" class="xl:text-[98px] lg:text-[90px] md:text-[70px] sm:text-[50px] text-[40px] absolute text-[#501800] top-0 left-[18%] min-[612px]:left-34 sm:left-18 md:left-25 xl:left-36 font-[400] mr-14" style="color: rgba(215, 112, 112, 1);">
             koreana
           </span>
-          <h1 class="mb-0 xl:text-[150px] lg:text-[130px] md:text-[110px] sm:text-[80px] min-[426px]:text-[50px] text-[40px] font-[400] left-0 max-[640px]:mx-auto" style="color: rgba(113, 45, 45, 1);">
+          <h1 class="mb-0 xl:text-[150px] lg:text-[130px] md:text-[110px] sm:text-[80px] min-[426px]:text-[50px] text-[50px] font-[400]  max-[640px]:mx-auto mt-2 sm:mt-0" style="color: rgba(113, 45, 45, 1);">
             Berliners
           </h1>
         </div>
@@ -63,8 +58,8 @@ function goToCatalog() {
           </div>
 
           <!-- Изображения пончиков -->
-          <img class="xl:hidden w-[70%] min-[482px]:w-[60%] h-auto mx-auto" src="../assets/images/header/donut.png" alt="Пончики">
-          <img class="hidden xl:block w-[60%] h-[60%]" src="../assets/images/header/donut.png" alt="Пончики">
+          <img class="xl:hidden w-[70%] min-[482px]:w-[60%] h-auto mx-auto" src="../assets/images/header/berliners.png" alt="Пончики">
+          <img class="hidden xl:block w-[60%] h-[70%]" src="../assets/images/header/berliners.png" alt="Пончики">
         </div>
 
         <!-- Преимущества (мобильные) -->
@@ -80,14 +75,6 @@ function goToCatalog() {
         </div>
       </div>
     </header>
-
-    <!-- Корзина (мобильные) -->
-    <div class="fixed sm:hidden bottom-5 right-5">
-      <div class="flex justify-center">
-        <img class="h-10 w-10 ml-3" src="../assets/images/header/drawer.png" alt="Корзина">
-        <span class="text-[#960101] mt-1 text-[24px] ml-1 cursor-pointer">0</span>
-      </div>
-    </div>
   </div>
 </template>
 

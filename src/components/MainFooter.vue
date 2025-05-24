@@ -6,11 +6,11 @@
 <template>
   <div class="relative w-full bg-cover bg-[url('../assets/images/footer/footer_bg.png')] p-4 sm:p-10 md:px-20 md:pt-18 sm:pt-25 pt-10 lg:pt-40 xl:px-90">
     <!-- Фоновые изображения -->
-    <img
+    <!-- <img
       class="absolute top-[2%] left-0 w-[10%] sm:top-[3%] sm:w-[12%] md:top-[5%] md:w-[10%] lg:top-[5%] lg:w-[13%] xl:top-[8%] xl:w-[10%]"
       src="../assets/images/footer/left_donut.png"
       alt=""
-    />
+    /> -->
     <img
       class="absolute top-0 right-[10%] w-[25%]"
       src="../assets/images/footer/font-rdonut.png"

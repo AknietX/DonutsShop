@@ -1,8 +1,9 @@
 <script setup>
 
-import HeaderEtc from '@/components/Header-Etc.vue';
+import Berliners from '@/components/Berliners.vue'
 import Assortment from '@/components/Assortment.vue';
 import MainHeader from '@/components/MainHeader.vue';
+
 
 
 
@@ -10,7 +11,7 @@ import MainHeader from '@/components/MainHeader.vue';
 
 <template>
   <MainHeader />
-  <HeaderEtc />
+  <Berliners />
   <Assortment />
 
 </template>

@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage.vue'
 import App from './App.vue'
 // Импорт других компонентов
 import HomePage from './pages/Home.vue' // пример
+import MainL from './components/MainL.vue'
 
 const routes = [
 
@@ -20,7 +21,16 @@ const routes = [
     name: 'Home',
     component: HomePage,
   },
+  {
+    path: '/delivery',
+    name: 'delivery',
+    component: MainL,
+  }
+
 ]
+
+
+
 
 const router = createRouter({
   history: createWebHistory(),
