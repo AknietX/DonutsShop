@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import supabase from '../supabase';
 import DrawerMain from './bodyDrawer.vue';
 
@@ -48,6 +48,25 @@ const clearCart = () => {
   cart.value = [];
 };
 
+const totalPrice = computed(() => {
+  return cart.value.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+});
+
+const placeOrder = () => {
+  if (cart.value.length === 0) return;
+
+  const productsList = cart.value.map(item =>
+    `${item.title} (${item.quantity} шт.)`
+  ).join(', ');
+
+  const message = `Здравствуйте, хотели заказать: ${productsList}. Общая сумма: ${totalPrice.value} сом.`;
+  const encodedMessage = encodeURIComponent(message);
+  const phoneNumber = '996707444938';
+
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+  clearCart();
+};
+
 onMounted(() => {
   fetchProducts();
 });
@@ -65,7 +84,7 @@ onMounted(() => {
               <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow overflow-y-auto">{{ item.description }}</p>
               <div class="flex items-center justify-between mt-auto">
                 <span class="font-bold text-[14px] text-red-500">{{ item.price }} с</span>
-                <div class="flex items-center w-[60%] text-[5px]">
+                <div class="flex items-center w-[60%]">
                   <div class="flex items-center w-[100%]">
                     <button
                       v-if="cart.find(cartItem => cartItem.id === item.id)?.quantity > 0"
@@ -92,13 +111,33 @@ onMounted(() => {
                       }}
                     </button>
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Мобильная корзина (только для экранов <780px) -->
+      <div
+        v-if="totalPrice > 0"
+        class="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 max-[780px]:block min-[780px]:hidden z-50"
+      >
+        <div class="flex justify-between items-center">
+          <div>
+            <span class="font-semibold">Итого:</span>
+            <span class="text-lg font-bold ml-2">{{ totalPrice }} с</span>
+          </div>
+          <button
+            @click="placeOrder"
+            class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition"
+          >
+            Сделать заказ
+          </button>
+        </div>
+      </div>
+
+      <!-- Основная корзина (для экранов >=780px) -->
       <DrawerMain
         :cart="cart"
         :removeFromCart="removeFromCart"
