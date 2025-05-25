@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   totalPrice: {
     type: Number,
     required: true
@@ -19,10 +19,25 @@ function removeItem(productId) {
 function clearCart() {
   emit('clear-cart')
 }
+
+function placeOrder() {
+  if (props.selectedProducts.length === 0) return;
+
+  const productsList = props.selectedProducts.map(item =>
+    `${item.title} (${item.quantity} шт.)`
+  ).join(', ');
+
+  const message = `Здравствуйте, хотели заказать: ${productsList}. Общая сумма: ${props.totalPrice.toLocaleString()} сом.`;
+  const encodedMessage = encodeURIComponent(message);
+  const phoneNumber = '996707444938';
+
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+  clearCart();
+}
 </script>
 
 <template>
-  <div class=" bg-white shadow-md w-[30%] h-[700px] top-[8%] right-10 p-5 rounded-xl block max-[780px]:hidden relative">
+  <div class="bg-white shadow-md w-[30%] h-[700px] top-[8%] right-10 p-5 rounded-xl block max-[780px]:hidden relative">
     <div class="flex justify-between items-center mb-4">
       <h1 class="xl:text-[20px] font-bold">Корзина</h1>
       <button
@@ -35,7 +50,6 @@ function clearCart() {
     </div>
 
     <div v-if="totalPrice > 0" class="h-[90%] flex flex-col">
-      <!-- Список товаров -->
       <div class="flex-1 overflow-y-auto">
         <div v-for="product in selectedProducts" :key="product.id" class="flex items-start py-3 border-b border-slate-400 group">
           <img
@@ -53,7 +67,6 @@ function clearCart() {
                 @click="removeItem(product.id)"
                 class="text-black hover:text-red-500 transition-colors"
               >
-
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="3 6 5 6 21 6"></polyline>
                   <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -68,13 +81,17 @@ function clearCart() {
         </div>
       </div>
 
-      <!-- Итого и кнопка -->
       <div class="mt-auto py-4 border-t">
         <div class="flex justify-between items-center">
           <span class="font-semibold">Итого:</span>
           <span class="text-xl font-bold">{{ totalPrice.toLocaleString() }} c</span>
         </div>
-        <button class="w-full bg-red-500 text-white py-3 rounded-lg mt-4 hover:bg-red-600 transition">
+        <button
+          @click="placeOrder"
+          class="w-full bg-red-500 text-white py-3 rounded-lg mt-4 hover:bg-red-600 transition"
+          :class="{'opacity-50 cursor-not-allowed': selectedProducts.length === 0}"
+          :disabled="selectedProducts.length === 0"
+        >
           Оформить заказ
         </button>
       </div>

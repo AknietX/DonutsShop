@@ -2,6 +2,7 @@
 import DonutSlider from './Donuts-slider.vue';
 import DrinkSlider from './Drinks-slider.vue';
 import MakaronSlider from './Makarons-slider.vue';
+
 import { inject } from 'vue';
 
 const {  openDrawer } = inject('cart')
@@ -19,6 +20,8 @@ const {  openDrawer } = inject('cart')
       </div>
       <MakaronSlider />
     </div>
+
+
     <div class="w-full flex justify-center">
       <button @click="openDrawer" class="w-[80%] p-4 bg-[#EB1437] rounded-xl text-white text-[18px] sm:text-[21px] md:text-[23px] lg:text-[26px] xl:text-[29px] hover:bg-[#A0000F] font-[600] mt-[7%] md:mt-[5%]">Сделать заказ</button>
     </div>

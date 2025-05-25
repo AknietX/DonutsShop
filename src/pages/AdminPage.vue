@@ -164,7 +164,7 @@ onMounted(async () => {
           Berliner
         </button>
         <button
-          @click="activeTable = 'Рекламный'"
+          @click="activeTable = 'donuts'"
           :class="{'bg-blue-600 text-white': activeTable === 'Рекламный'}"
           class="px-4 py-2 rounded border"
         >
@@ -179,7 +179,7 @@ onMounted(async () => {
           :class="{'bg-blue-600 text-white': activeCategory === 'products'}"
           class="px-4 py-2 rounded border"
         >
-          Пончики
+          Берлинеры
         </button>
         <button
           @click="activeCategory = 'drinks'"
@@ -194,6 +194,20 @@ onMounted(async () => {
           class="px-4 py-2 rounded border"
         >
           Выпечка
+        </button>
+         <button v-if="activeTable==='berliner'"
+          @click="activeCategory = 'cream'"
+          :class="{'bg-blue-600 text-white': activeCategory === 'cream'}"
+          class="px-4 py-2 rounded border"
+        >
+          Мороженное
+        </button>
+        <button v-if="activeTable==='berliner'"
+          @click="activeCategory = 'new'"
+          :class="{'bg-blue-600 text-white': activeCategory === 'new'}"
+          class="px-4 py-2 rounded border"
+        >
+          Новинка
         </button>
       </div>
 

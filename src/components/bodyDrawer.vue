@@ -54,7 +54,7 @@ const placeOrder = () => {
 </script>
 
 <template>
-  <div class="bg-white shadow-md w-[30%] h-[700px] top-[8%] right-10 p-5 rounded-xl block max-[780px]:hidden relative">
+  <div class="bg-white shadow-md w-[100%] h-[700px] top-[8%] right-10 p-5 rounded-xl block max-[780px]:hidden relative">
     <div class="flex justify-between items-center mb-4">
       <h1 class="xl:text-[20px] font-bold">Корзина</h1>
       <button

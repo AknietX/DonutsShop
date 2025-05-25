@@ -63,7 +63,7 @@ const placeOrder = () => {
   const encodedMessage = encodeURIComponent(message);
   const phoneNumber = '996707444938';
 
-  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+  window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`, '_blank');
   clearCart();
 };
 
@@ -73,8 +73,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="p-4 sm:p-10 md:px-20 md:pt-8 sm:pt-25 pt-10 lg:pt-15 xl:px-80">
+  <div class="p-4 sm:p-10 md:px-20 md:pt-8 sm:pt-25 pt-10 lg:pt-15 xl:px-80 relative">
     <div class="flex justify-between">
+      <!-- Товары -->
       <div class="grid grid-cols-2 min-[500px]:grid-cols-3 gap-4 w-[100%] min-[780px]:w-[60%]">
         <div class="flex flex-col" v-for="item in items" :key="item.id">
           <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full hover:shadow-lg transition-shadow">
@@ -107,7 +108,7 @@ onMounted(() => {
                     >
                       {{ cart.find(cartItem => cartItem.id === item.id)?.quantity > 0
                         ? `×${cart.find(cartItem => cartItem.id === item.id).quantity}`
-                        : `В корзину`
+                        : 'В корзину'
                       }}
                     </button>
                   </div>
@@ -138,13 +139,16 @@ onMounted(() => {
       </div>
 
       <!-- Основная корзина (для экранов >=780px) -->
-      <DrawerMain
-        :cart="cart"
-        :removeFromCart="removeFromCart"
-        :clearCart="clearCart"
-        :decreaseQuantity="decreaseQuantity"
-        :addToCart="addToCart"
-      />
+      <div class="min-[780px]:block hidden w-[35%] sticky top-0 h-[calc(100vh-120px)]">
+        <DrawerMain
+          :cart="cart"
+          :removeFromCart="removeFromCart"
+          :clearCart="clearCart"
+          :decreaseQuantity="decreaseQuantity"
+          :addToCart="addToCart"
+          class="h-full"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -162,5 +166,24 @@ onMounted(() => {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Стили для корзины */
+.drawer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.drawer-footer {
+  margin-top: auto;
+  padding: 1rem;
+  background: white;
+  border-top: 1px solid #e5e7eb;
 }
 </style>
